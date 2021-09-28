@@ -32,3 +32,29 @@ export const SearchButton = styled.TouchableOpacity`
   align-items: center;
   justify-content: center;
 `;
+
+export const Title = styled.Text`
+  font-size: 25px;
+  font-weight: bold;
+  color: #FFF;
+  padding-top: 20px;
+  padding-bottom: 8px;
+  padding-left: 14px;
+  padding-right: 14px;
+`;
+
+export const BannerButton = styled.TouchableOpacity`
+  align-items: center;
+`;
+
+export const Banner = styled.Image`
+  width: 95%;
+  height: 250px;
+  border-radius: 6px;
+  margin: 0 14px;
+`;
+
+export const SliderMove = styled.FlatList`
+  height: 250px;
+  padding: 0 14px;
+`;
