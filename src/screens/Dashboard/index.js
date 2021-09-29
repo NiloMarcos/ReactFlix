@@ -6,9 +6,12 @@ import SliderItem from '../../components/SliderItem';
 import { ContainerAll, SearchContainer, Input, SearchButton, Title, BannerButton, Banner, SliderMove } from "./styles";
 
 import api, {key} from '../../services/api';
+import { getListMovies } from '../../utils/movie';
 
 export default function Dashboard() {
-  const [nowMovie, setNowMovie] = useState([]);
+  const [nowMovie, setNowMovies] = useState([]);
+  const [popularMovies, setPopularMovies] = useState([]);
+  const [topMovies, setTopMovies] = useState([]);
 
   useEffect(() => {
     let isActive = true;
@@ -45,7 +48,15 @@ export default function Dashboard() {
           }),
           
         ])
-      console.log(topData.data.results);
+      
+        const nowList = getListMovies(10, nowData.data.results)
+        const popularList = getListMovies(5, popularData.data.results)
+        const topList = getListMovies(5, topData.data.results)
+        
+        setNowMovies(nowList);
+        setPopularMovies(popularList);
+        setTopMovies(topList);
+
     }
 
     getMovie()
@@ -75,24 +86,27 @@ export default function Dashboard() {
         <SliderMove 
           horizontal={true}
           showsHorizontalScrollIndicator={false}
-          data={[1,2,3,4, 5, 6, 7, 8, 9, 10]}
-          renderItem={({item}) => <SliderItem />}
+          data={nowMovie}
+          renderItem={({item}) => <SliderItem data={item} />}
+          keyExtractor={(item) => String(item.id)}
         />
 
         <Title>Populares</Title>
         <SliderMove 
           horizontal={true}
           showsHorizontalScrollIndicator={false}
-          data={[1,2,3,4, 5, 6, 7, 8, 9, 10]}
-          renderItem={({item}) => <SliderItem />}
+          data={popularMovies}
+          renderItem={({item}) => <SliderItem data={item} />}
+          keyExtractor={(item) => String(item.id)}
         />
 
         <Title>Mais Votados</Title>
         <SliderMove 
           horizontal={true}
           showsHorizontalScrollIndicator={false}
-          data={[1,2,3,4, 5, 6, 7, 8, 9, 10]}
-          renderItem={({item}) => <SliderItem />}
+          data={topMovies}
+          renderItem={({item}) => <SliderItem data={item} />}
+          keyExtractor={(item) => String(item.id)}
         />
       </ScrollView>    
     </ContainerAll>
