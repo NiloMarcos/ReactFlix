@@ -17,6 +17,8 @@ export default function Dashboard() {
   const [bannerMovie, setBannerMovie] = useState({});
   const [loading, setLoading] = useState(true);
 
+  const [input, setInput] = useState('');
+
   const navigation = useNavigation();
 
   useEffect(() => {
@@ -76,6 +78,15 @@ export default function Dashboard() {
     navigation.navigate('Details', {id: item.id});
   }
 
+  function handleSearchMovie(){
+    if(input === ''){
+      return;
+    }
+    navigation.navigate('Search', {name: input})
+    setInput('');
+
+  }
+
   if(loading){
     return(
       <ContainerAll>
@@ -89,9 +100,14 @@ export default function Dashboard() {
       <Header title="React Prime" />
 
       <SearchContainer>
-        <Input placeholder="Ex: Vingadores" placeholderTextColor="#DDD" />
+        <Input 
+          placeholder="Ex: Vingadores" 
+          placeholderTextColor="#DDD" 
+          value={input} 
+          onChangeText={(text) => setInput(text)} 
+        />
 
-        <SearchButton>
+        <SearchButton onPress={() => handleSearchMovie()}>
           <Feather name="search" size={30} color="#FFF" />
         </SearchButton>
       </SearchContainer>

@@ -4,7 +4,6 @@ import { Feather, Ionicons } from '@expo/vector-icons';
 import { useNavigation, useRoute } from '@react-navigation/native';
 import Stars from 'react-native-stars';
 import api, {key} from '../../services/api';
-
 import { ContainerAll, Header, HeaderButton, Banner, ButtonLink, Title, ContentArea, Rate, ListGenres, TitleDescription, Description} from './styles';
 import Genres from '../../components/Genres';
 import ModalLink from '../../components/ModalLink';
