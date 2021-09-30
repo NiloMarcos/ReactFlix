@@ -4,6 +4,10 @@ import { ContainerAll, Banner, Title, RateContainer, Rate } from './styles';
 
 export default function SearchItem({ data, navigatePage }) {
   function detailMove(){
+    if(data.release_data === ''){
+      alert('Filme ainda sem data');
+      return;
+    }
     navigatePage(data);
   }
 
