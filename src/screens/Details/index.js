@@ -8,11 +8,14 @@ import { ContainerAll, Header, HeaderButton, Banner, ButtonLink, Title, ContentA
 import Genres from '../../components/Genres';
 import ModalLink from '../../components/ModalLink';
 
+import { saveMovie, hasMovie, deleteMovie } from '../../utils/storage';
+
 export default function Details() {
   const navigation = useNavigation();
   const route = useRoute();
   const [openLink, setOpenLink] = useState(false);
   const [movie, setMovie] = useState({});
+  const [favoriteMovies, setFavoriteMovies] = useState(false);
 
   useEffect(() => {
     let isActive = true;
@@ -30,7 +33,9 @@ export default function Details() {
 
       if(isActive){
         setMovie(response.data);
-        console.log(response.data);
+
+        const isFavorite = await hasMovie(response.data);
+        setFavoriteMovies(isFavorite);
       }
     }
 
@@ -43,14 +48,30 @@ export default function Details() {
     }
   },[]);
 
+  async function handleFavoriteMovie(movie){
+    if(favoriteMovies){
+      await deleteMovie(movie.id);
+      setFavoriteMovies(false);
+      alert('Filme removido da sua lista')
+    } else {
+      await saveMovie('@primeReact', movie)
+      setFavoriteMovies(true)
+      alert('Filme salvo com sucesso');
+    }
+  }
+
   return (
     <ContainerAll>
       <Header>
         <HeaderButton activeOpacity={0.7} onPress={() => navigation.goBack() }>
           <Feather name="arrow-left" size={28} color="#FFF" />
         </HeaderButton>
-        <HeaderButton>
-          <Ionicons name="bookmark" size={28} color="#FFF" />
+        <HeaderButton onPress={() => handleFavoriteMovie(movie)}>
+          { favoriteMovies ? (
+            <Ionicons name="bookmark" size={28} color="#FFF" />
+          ) : (
+            <Ionicons name="bookmark-outline" size={28} color="#FFF" />
+          )}
         </HeaderButton>
       </Header>
 
