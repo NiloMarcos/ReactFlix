@@ -1,6 +1,5 @@
 import React, { useState, useEffect } from 'react';
 import Header from '../../components/Header';
-import api from '../../services/api';
 import { getMovieSave, deleteMovie } from '../../utils/storage';
 import FavoriteItem from '../../components/FavoriteItem';
 import { useNavigation, useIsFocused } from '@react-navigation/native';
