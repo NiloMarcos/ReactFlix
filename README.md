@@ -33,8 +33,18 @@ Para instalar o projeto em sua maquina siga os passos abaixo.
 
 ### Fotos da aplicação
 
-<div align="center">
-   <img src="assets/Print1.png">
-   <img src="assets/Print2.png">
-   <img src="assets/Print3.png">
-</div>
+<p align="center">
+<table  style="border: none">
+  <tr>
+    <td>
+      <img src="assets/Print1.png">
+    </td>
+    <td>
+      <img src="assets/Print2.png">
+    </td>
+    <td>
+      <img src="assets/Print3.png">
+    </td>
+  </tr>
+</table>
+</p>
